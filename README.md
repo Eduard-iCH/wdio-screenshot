@@ -73,7 +73,13 @@ The following options are available:
 
 * **useScrollTo** `Boolean`<br>
   tries to use real scrolling for vertical movement (default false)
-  
+
+* **beforeSnapshot** `Function (browser, options, x, y)`<br>
+  executed before a page screenshot or it's part are taken (default null)
+
+* **afterSnapshot** `Function (browser, options, x, y)`<br>
+  executed after a page screenshot or it's part are taken (default null)
+
 ## Use GraphicsMagick
 wdio-screenshot uses [GraphicsMagick](http://www.graphicsmagick.org/) for image processing when available. Without GraphicsMagick installed, wdio-screenshot fallbacks to [Jimp](https://github.com/oliver-moran/jimp) - a image processing library written in JS.
 
