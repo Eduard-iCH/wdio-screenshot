@@ -68,6 +68,9 @@ The following options are available:
 * **scrollPauseTime** `Number`<br>
   pause time after every part of screenshot are taken (default 100)
 
+* **useScrollTo** `Boolean`<br>
+  tries to use real scrolling for vertical movement (default false)
+  
 ## Use GraphicsMagick
 wdio-screenshot uses [GraphicsMagick](http://www.graphicsmagick.org/) for image processing when available. Without GraphicsMagick installed, wdio-screenshot fallbacks to [Jimp](https://github.com/oliver-moran/jimp) - a image processing library written in JS.
 

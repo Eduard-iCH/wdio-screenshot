@@ -5,6 +5,7 @@ import debug from 'debug';
 import ScreenshotStrategyManager from '../utils/ScreenshotStrategyManager';
 import getScreenDimensions from '../scripts/getScreenDimensions';
 import virtualScroll from '../scripts/virtualScroll';
+import virtualScrollTo from '../scripts/virtualScrollTo';
 import pageHeight from '../scripts/pageHeight';
 import generateUUID from '../utils/generateUUID';
 import saveBase64Image from '../utils/saveBase64Image';
@@ -47,12 +48,14 @@ export default async function makeAreaScreenshot(browser, startX, startY, endX, 
     log('set page height to %s px', screenDimension.getDocumentHeight());
     await browser.execute(pageHeight, `${screenDimension.getDocumentHeight()}px`);
 
+    let virtualScrollFnc = ( options.useScrollTo ? virtualScrollTo : virtualScroll);
+
     let loop = false;
     do {
       const { x, y, indexX, indexY } = screenshotStrategy.getScrollPosition();
       log('scroll to coordinates x: %s, y: %s for index x: %s, y: %s', x, y, indexX, indexY);
 
-      await browser.execute(virtualScroll, x, y, false, options);
+      await browser.execute(virtualScrollFnc, x, y, false, options);
       const pauseTime = options.scrollPauseTime == null ? 100 : options.scrollPauseTime;
       await browser.pause(pauseTime);
 
@@ -87,7 +90,7 @@ export default async function makeAreaScreenshot(browser, startX, startY, endX, 
         await browser.execute(pageHeight, '');
 
         log('revert scroll to x: %s, y: %s', 0, 0);
-        await browser.execute(virtualScroll, 0, 0, true);
+        await browser.execute(virtualScrollFnc, 0, 0, true);
       })
     ]);
 
