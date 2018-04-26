@@ -15,16 +15,22 @@ export default async function beforeScreenshot(browser, options) {
   log('trigger resize event to allow js components to resize properly');
   await browser.execute(triggerResize);
 
-  // hide elements
+  // hide elements (occupies space, you don't see it but you can not click on elements behind it)
   if (Array.isArray(options.hide) && options.hide.length) {
     log('hide the following elements: %s', options.hide.join(', '));
     await browser.selectorExecute(options.hide, modifyElements, 'opacity', '0');
   }
 
-  // remove elements
+  // remove elements (occupies no space, ignored while rendering (acts like if element is not there at all))
   if (Array.isArray(options.remove) && options.remove.length) {
     log('remove the following elements: %s', options.remove.join(', '));
     await browser.selectorExecute(options.remove, modifyElements, 'display', 'none');
+  }
+
+  // remove elements from visibles (occupies space and you can click on element behind it)
+  if (Array.isArray(options.invis) && options.invis.length) {
+    log('remove the following elements: %s', options.invis.join(', '));
+    await browser.selectorExecute(options.invis, modifyElements, 'visibility', 'hidden');
   }
 
   // scroll back to start

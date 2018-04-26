@@ -18,6 +18,12 @@ export default async function afterScreenshot(browser, options) {
     await browser.selectorExecute(options.remove, modifyElements, 'display', '');
   }
 
+  // make it visible again
+  if (Array.isArray(options.invis) && options.invis.length) {
+    log('make visible the following elements again: %s', options.invis.join(', '));
+    await browser.selectorExecute(options.invis, modifyElements, 'visibility', '');
+  }
+
   // show scrollbars
   log('show scrollbars again');
   await browser.execute(scrollbars, true);
