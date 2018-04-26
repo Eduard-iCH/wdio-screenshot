@@ -49,8 +49,7 @@ wdio-screenshot enhances an WebdriverIO instance with the following commands:
 * `browser.saveElementScreenshot([fileName], elementSelector, [{options}]);`
 
 
-All of these provide options that will help you to exclude unrelevant parts (e.g. content). The following options are
-available:
+The following options are available:
 
 
 * **exclude** `String[]|Object[]` (**not yet implemented**)<br>
@@ -65,6 +64,9 @@ available:
 
 * **invis** `String[]`<br>
   set invisibility for all elements queried by all kinds of different [WebdriverIO selector strategies](http://webdriver.io/guide/usage/selectors.html) (via `visibility: none`)
+
+* **scrollPauseTime** `Number`<br>
+  pause time after every part of screenshot are taken (default 100)
 
 ## Use GraphicsMagick
 wdio-screenshot uses [GraphicsMagick](http://www.graphicsmagick.org/) for image processing when available. Without GraphicsMagick installed, wdio-screenshot fallbacks to [Jimp](https://github.com/oliver-moran/jimp) - a image processing library written in JS.
