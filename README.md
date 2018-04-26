@@ -65,6 +65,9 @@ The following options are available:
 * **invis** `String[]`<br>
   set invisibility for all elements queried by all kinds of different [WebdriverIO selector strategies](http://webdriver.io/guide/usage/selectors.html) (via `visibility: none`)
 
+* **scrollTarget** `String`<br>
+  scroll specific element instead of a whole page
+
 * **scrollPauseTime** `Number`<br>
   pause time after every part of screenshot are taken (default 100)
 

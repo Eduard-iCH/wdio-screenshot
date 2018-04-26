@@ -6,11 +6,11 @@ export default function virtualScroll(x, y, remove, options) {
   const translate = remove ? 'none' : `translate(${w}px,${h}px)`;
 
   /*
-   * value `options.scroll` indicates that `wdio-screenshot` should move
+   * value `options.scrollTarget` indicates that `wdio-screenshot` should move
    * an element inside DOM up instead of default `<html />`
    */
-  let html = options && options.scroll
-    ? document.querySelector(options.scroll)
+  let html = options && options.scrollTarget
+    ? document.querySelector(options.scrollTarget)
     : document.documentElement;
 
   html.style.webkitTransform = translate;
