@@ -89,6 +89,15 @@ The following options are available:
 * **scrollbarsHideForElem** `String`<br>
   specifies the element which need to hide his scrollbars (default - html)
 
+* **shiftAreaBy** `Number[left, top, right, bottom]`<br>
+  define how much extra space (in px) should be captured around the element (default - [0px,0px,0px,0px])
+
+* **scrollWidth** `Number`<br>
+  override the final screenshot width (px) for the scrollTarget element (default null)
+
+* **scrollHeight** `Number`<br>
+  override the final screenshot height (px) for the scrollTarget element (default null)
+
 ## Use GraphicsMagick
 wdio-screenshot uses [GraphicsMagick](http://www.graphicsmagick.org/) for image processing when available. Without GraphicsMagick installed, wdio-screenshot fallbacks to [Jimp](https://github.com/oliver-moran/jimp) - a image processing library written in JS.
 

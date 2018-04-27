@@ -8,6 +8,10 @@ export default function getBoundingRect(elems) {
       right: boundingRect.right,
       bottom: boundingRect.bottom,
       left: boundingRect.left,
+      height: boundingRect.height,
+      width: boundingRect.width,
+      scrollHeight: elem.scrollHeight,
+      scrollWidth: elem.scrollWidth,
     };
   });
 }

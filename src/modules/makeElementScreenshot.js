@@ -24,7 +24,19 @@ export default async function makeElementScreenshot(browser, elementSelector, op
   const boundingRect = groupBoundingRect(boundingRects);
 
   // make screenshot of area
-  const base64Image = await makeAreaScreenshot(browser, boundingRect.left, boundingRect.top, boundingRect.right, boundingRect.bottom, options);
+  const exLeft    = (options.shiftAreaBy != null) ? options.shiftAreaBy[0] : 0;
+  const exTop     = (options.shiftAreaBy != null) ? options.shiftAreaBy[1] : 0;
+  const exRight   = (options.shiftAreaBy != null) ? options.shiftAreaBy[2] : 0;
+  const exBottom  = (options.shiftAreaBy != null) ? options.shiftAreaBy[3] : 0;
+  const scrollW   = (options.scrollWidth != null) ? options.scrollWidth : boundingRect.scrollWidth;
+  const scrollH   = (options.scrollHeight != null) ? options.scrollHeight : boundingRect.scrollHeight;
+
+  const left      = boundingRect.left + exLeft;
+  const top       = boundingRect.top + exTop;
+  const right     = ((options.scrollTarget == null) ? boundingRect.right : scrollW + boundingRect.left) + exRight;
+  const bottom    = ((options.scrollTarget == null) ? boundingRect.bottom : scrollH + boundingRect.top) + exBottom;
+
+  const base64Image = await makeAreaScreenshot(browser, left, top, right, bottom, options);
 
   // show scrollbars, show & add elements
   await afterScreenshot(browser, options);
