@@ -18,6 +18,9 @@ export default async function makeElementScreenshot(browser, elementSelector, op
 
   // get bounding rect of elements
   const boundingRects = await browser.selectorExecute(elementSelector, getBoundingRects);
+  if (boundingRects == null || boundingRects.reduce == null)
+    throw new Error('Cannot find any visible element by a given selector: ' + elementSelector);
+
   const boundingRect = groupBoundingRect(boundingRects);
 
   // make screenshot of area
