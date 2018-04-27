@@ -86,6 +86,9 @@ The following options are available:
 * **stepModHeight** `Number`<br>
   modify how fast and far screen moves in vertical direction after every snapshot taken (default 1.0 - 100% of the current viewport)
 
+* **scrollbarsHideForElem** `String`<br>
+  specifies the element which need to hide his scrollbars (default - html)
+
 ## Use GraphicsMagick
 wdio-screenshot uses [GraphicsMagick](http://www.graphicsmagick.org/) for image processing when available. Without GraphicsMagick installed, wdio-screenshot fallbacks to [Jimp](https://github.com/oliver-moran/jimp) - a image processing library written in JS.
 

@@ -7,10 +7,10 @@ import triggerResize from '../scripts/triggerResize';
 
 const log = debug('wdio-screenshot:beforeScreenshot');
 
-export default async function beforeScreenshot(browser, options) {
+export default async function beforeScreenshot(browser, options = {}) {
   // hide scrollbars
   log('hide scrollbars');
-  await browser.execute(scrollbars, false);
+  await browser.execute(scrollbars, false, options.scrollbarsHideForElem);
 
   log('trigger resize event to allow js components to resize properly');
   await browser.execute(triggerResize);

@@ -1,7 +1,9 @@
-export default function scrollbars(enabled) {
+export default function scrollbars(enabled, targetElem) {
+  let html = (targetElem != null ? document.querySelector(targetElem) : document.documentElement);
+
   if (enabled) {
-    document.documentElement.style.overflow = '';
+    html.style.overflow = '';
   } else {
-    document.documentElement.style.overflow = 'hidden';
+    html.style.overflow = 'hidden';
   }
 }

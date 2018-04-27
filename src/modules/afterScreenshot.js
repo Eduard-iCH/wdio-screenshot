@@ -5,7 +5,7 @@ import modifyElements from '../scripts/modifyElements';
 
 const log = debug('wdio-screenshot:afterScreenshot');
 
-export default async function afterScreenshot(browser, options) {
+export default async function afterScreenshot(browser, options = {}) {
   // show elements
   if (Array.isArray(options.hide) && options.hide.length) {
     log('show the following elements again: %s', options.hide.join(', '));
@@ -26,5 +26,5 @@ export default async function afterScreenshot(browser, options) {
 
   // show scrollbars
   log('show scrollbars again');
-  await browser.execute(scrollbars, true);
+  await browser.execute(scrollbars, true, options.scrollbarsHideForElem);
 }
