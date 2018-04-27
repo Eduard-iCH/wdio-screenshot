@@ -80,6 +80,12 @@ The following options are available:
 * **afterSnapshot** `Function (browser, options, x, y)`<br>
   executed after a page screenshot or it's part are taken (default null)
 
+* **stepModWidth** `Number`<br>
+  modify how fast and far screen moves in horizontal direction after every snapshot taken (default 1.0 - 100% of the current viewport)
+
+* **stepModHeight** `Number`<br>
+  modify how fast and far screen moves in vertical direction after every snapshot taken (default 1.0 - 100% of the current viewport)
+
 ## Use GraphicsMagick
 wdio-screenshot uses [GraphicsMagick](http://www.graphicsmagick.org/) for image processing when available. Without GraphicsMagick installed, wdio-screenshot fallbacks to [Jimp](https://github.com/oliver-moran/jimp) - a image processing library written in JS.
 

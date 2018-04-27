@@ -24,7 +24,7 @@ export default async function makeViewportScreenshot(browser, options = {}) {
 
   // get screen dimisions to determine viewport height & width
   const screenDimensions = (await browser.execute(getScreenDimensions)).value;
-  const screenDimension = new ScreenDimension(screenDimensions, browser);
+  const screenDimension = new ScreenDimension(screenDimensions, browser, options);
 
   // make screenshot of area
   const base64Image = await makeAreaScreenshot(browser, startX, startY, screenDimension.getViewportWidth(), screenDimension.getViewportHeight(), options);

@@ -1,6 +1,6 @@
 export default class ScreenDimensions {
 
-  constructor(options, browser = {}) {
+  constructor(options, browser = {}, scrOpts = {}) {
     const { html, body, window } = options;
     const { isIOS } = browser;
 
@@ -26,6 +26,9 @@ export default class ScreenDimensions {
     this.pixelRatio = window.pixelRatio;
     this.orientation = window.orientation;
 
+    this.stepModWidth = (scrOpts.stepModWidth == null ? 1.0 : scrOpts.stepModWidth);
+    this.stepModHeight = (scrOpts.stepModHeight == null ? 1.0 : scrOpts.stepModHeight);
+
     if (this.isIOS && this.isLandscape() && this.getViewportHeight() - 20 === this.getInnerHeight()) {
       // iOS 7 has a 20px bug in landscape mode
       this.viewportHeight = this.getInnerHeight();
@@ -39,11 +42,11 @@ export default class ScreenDimensions {
   }
 
   getViewportWidth() {
-    return this.viewportWidth;
+    return Math.round(this.viewportWidth * this.stepModWidth); // TODO: very hacky way, need to find a better solution
   }
 
   getViewportHeight() {
-    return this.viewportHeight;
+    return Math.round(this.viewportHeight * this.stepModHeight); // TODO: very hacky way, need to find a better solution
   }
 
   isLandscape() {
