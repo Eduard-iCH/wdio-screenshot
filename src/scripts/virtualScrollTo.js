@@ -21,11 +21,13 @@ export default function virtualScrollTo(x, y, remove, options = {}) {
 
     // Scroll to pos (hybrid)
     // Width
-    html.style.webkitTransform = translate;
-    html.style.mozTransform = translate;
-    html.style.msTransform = translate;
-    html.style.oTransform = translate;
-    html.style.transform = translate;
+    if (w != 0 || remove) {
+      html.style.webkitTransform = translate;
+      html.style.mozTransform = translate;
+      html.style.msTransform = translate;
+      html.style.oTransform = translate;
+      html.style.transform = translate;
+    }
 
     // Height
     html.scrollLeft = 0;
