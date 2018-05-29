@@ -74,10 +74,10 @@ The following options are available:
 * **useScrollTo** `Boolean`<br>
   tries to use real scrolling for vertical movement (default false)
 
-* **beforeSnapshot** `Function (browser, options, x, y)`<br>
+* **beforeSnapshot** `Function (browser, options, x, y, indexX, indexY)`<br>
   executed before a page screenshot or it's part are taken (default null)
 
-* **afterSnapshot** `Function (browser, options, x, y)`<br>
+* **afterSnapshot** `Function (browser, options, x, y, indexX, indexY)`<br>
   executed after a page screenshot or it's part are taken (default null)
 
 * **stepModWidth** `Number`<br>

@@ -60,9 +60,9 @@ export default async function makeAreaScreenshot(browser, startX, startY, endX, 
       await browser.pause(pauseTime);
 
       log('take screenshot');
-      if (typeof options.beforeSnapshot == 'function') await options.beforeSnapshot(browser, options, x, y);
+      if (typeof options.beforeSnapshot == 'function') await options.beforeSnapshot(browser, options, x, y, indexX, indexY);
       const base64Screenshot = (await browser.screenshot()).value;
-      if (typeof options.afterSnapshot == 'function') await options.afterSnapshot(browser, options, x, y);
+      if (typeof options.afterSnapshot == 'function') await options.afterSnapshot(browser, options, x, y, indexX, indexY);
 
       const cropDimensions = screenshotStrategy.getCropDimensions();
       const filePath = path.join(dir, `${indexY}-${indexX}.png`);
