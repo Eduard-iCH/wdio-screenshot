@@ -61,6 +61,17 @@ export default async function makeAreaScreenshot(browser, startX, startY, endX, 
 
       log('take screenshot');
       if (typeof options.beforeSnapshot == 'function') await options.beforeSnapshot(browser, options, x, y, indexX, indexY);
+      
+      // Workaround to fix a "flashing scrollbar bug" in chrome mobile emulation mode with "deviceMetrics" enabled
+      if ( options.useScrollTo &&
+           browser.desiredCapabilities.chromeOptions &&
+           browser.desiredCapabilities.chromeOptions.mobileEmulation &&
+           browser.desiredCapabilities.chromeOptions.mobileEmulation["deviceMetrics"] ) {
+
+           await browser.screenshot();
+           await browser.pause(250);
+      }
+
       const base64Screenshot = (await browser.screenshot()).value;
       if (typeof options.afterSnapshot == 'function') await options.afterSnapshot(browser, options, x, y, indexX, indexY);
 
